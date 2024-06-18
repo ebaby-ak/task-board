@@ -8,23 +8,51 @@ function generateTaskId() {
 }
 
 // Todo: create a function to create a task card
-function createTaskCard(task) {
-  return `<div class="card" draggable="true" data-task-id="${task.id}">
-        <div class="card-body">
-            <h5 class="card-title">${task.title}</h5>
-            <p class="card-text">${task.description}</p>
-        </div>
-        <div class="card-footer">
-            <small class="text-muted">Due: ${task.dueDate}</small>
-        </div>
-    </div>`;
-}
+function createTaskCard(task) {}
 
 // Todo: create a function to render the task list and make cards draggable
-function renderTaskList() {}
+function renderTaskList() {
+  $('#todo-cards').html('');
+  $('#in-progress-cards').html('');
+  $('#done-cards').html('');
+
+  taskList.forEach (task) {
+    const taskCard = createTaskCard(task);
+  };
+
+  $('.card').draggable({
+    revert: "invalid",
+    stack: ".card",
+    helper: "clone"
+  });
+}
 
 // Todo: create a function to handle adding a new task
-function handleAddTask(event) {}
+function handleAddTask(event) {
+  event.preventDefault();
+
+  const title = $('#taskTitle').val();
+  const dueDate = $('#taskDueDate').val();
+  const description = $('#taskDescription').val();
+
+  if (title && dueDate && description) {
+    const newTask = {
+      id: generateTaskId(),
+      title: title,
+      dueDate: dueDate,
+      description: description,
+      status: 'to-do'
+    };
+
+    taskList.push(newTask);
+    renderTaskList();
+    $('#formModal').modal('show');
+    $('#taskForm')[0].reset();
+
+    localStorage.setItem("task", JSON.stringify(taskList));
+    localStorage.setItem("nextId", JSON.stringify(nextId));
+  }
+}
 
 // Todo: create a function to handle deleting a task
 function handleDeleteTask(event) {}
@@ -33,4 +61,6 @@ function handleDeleteTask(event) {}
 function handleDrop(event, ui) {}
 
 // Todo: when the page loads, render the task list, add event listeners, make lanes droppable, and make the due date field a date picker
-$(document).ready(function () {});
+$(document).ready(function () {
+  renderTaskList();
+});
