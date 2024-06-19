@@ -8,23 +8,46 @@ function generateTaskId() {
 }
 
 // Todo: create a function to create a task card
-function createTaskCard(task) {}
+function createTaskCard(task) {
+  const taskCard = document.createElement('div');
+  taskCard.classList.add('task-card');
+
+  const titleElement = document.createElement('h3');
+  titleElement.textContent = task.title;
+
+  const descriptionElement = document.createElement('p');
+  descriptionElement.textContent = task.description;
+
+  const deadlineElement = document.createElement('p');
+  deadlineElement.textContent = `Deadline: ${task.deadline}`;
+
+  taskCard.appendChild(titleElement);
+  taskCard.appendChild(descriptionElement);
+  taskCard.appendChild(deadlineElement);
+
+  const taskContainer = document.getElementById('task-container');
+  taskContainer.appendChild(taskCard);
+}
+
+createTaskCard(task);
 
 // Todo: create a function to render the task list and make cards draggable
 function renderTaskList() {
-  $('#todo-cards').html('');
-  $('#in-progress-cards').html('');
-  $('#done-cards').html('');
+const taskListContainer = document.getElementById('task-list');
 
-  taskList.forEach (task) {
-    const taskCard = createTaskCard(task);
-  };
+  const taskCard = document.createElement('div');
+  taskCard.classList.add('task-card');
+  taskCard.setAttribute('draggable', 'true');
+  taskCard.setAttribute('data-task-index', index);
 
-  $('.card').draggable({
-    revert: "invalid",
-    stack: ".card",
-    helper: "clone"
+  taskCard.textContent = task.title;
+
+  taskCard.addEventListener('dragstart', (event) => {
+    event.dataTransfer.setData('text/plain', index);
   });
+
+  taskListContainer.appendChild(taskCard);
+
 }
 
 // Todo: create a function to handle adding a new task

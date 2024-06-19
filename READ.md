@@ -35,3 +35,6 @@ The user is provided with starter code to build out a task board that allows any
 
 # Expectation
 A user can expect that the final deployment to allow them to create a task upon clicking the "add task" button. The task will be populated under the "To Do" lane and will be draggable to other lanes, upon status change, and can be deleted once completed.
+
+# Sources
+Xpert Learning Assistant was used to create the JavaScript code for creating a fuction to create a task card and creating a function to render the task list and make cards draggable. Stack Overflow was used to create the JavaScript function to handle adding a new task.
