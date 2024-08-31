@@ -31,24 +31,21 @@ function createTaskCard(task) {
   return taskCard;
 }
 
-createTaskCard(task);
-
 // Todo: create a function to render the task list and make cards draggable
 function renderTaskList() {
-const taskListContainer = document.getElementById('task-list');
+$('#todo-cards').empty();
+$('#in-progress-cards').empty();
+$('#done-cards').empty();
 
-  const taskCard = document.createElement('div');
-  taskCard.classList.add('task-card');
-  taskCard.setAttribute('draggable', 'true');
-  taskCard.setAttribute('data-task-index', index);
+taskList.forEach(task => {
+  const taskCard = createTaskCard(task);
+  $(`#${task.status}-cards`).append(taskCard);
+});
 
-  taskCard.textContent = task.title;
-
-  taskCard.addEventListener('dragstart', (event) => {
-    event.dataTransfer.setData('text/plain', index);
-  });
-
-  taskListContainer.appendChild(taskCard);
+$('.task-card').draggable({
+  revert: 'invalid',
+  helper: 'clone'
+});
 
 }
 
