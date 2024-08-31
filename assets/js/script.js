@@ -1,6 +1,6 @@
 // Retrieve tasks and nextId from localStorage
-let taskList = JSON.parse(localStorage.getItem("tasks"));
-let nextId = JSON.parse(localStorage.getItem("nextId"));
+let taskList = JSON.parse(localStorage.getItem("tasks")) || [];
+let nextId = JSON.parse(localStorage.getItem("nextId")) 1;
 
 // Todo: create a function to generate a unique task id
 function generateTaskId() {
@@ -9,24 +9,16 @@ function generateTaskId() {
 
 // Todo: create a function to create a task card
 function createTaskCard(task) {
-  const taskCard = document.createElement('div');
-  taskCard.classList.add('task-card');
-
-  const titleElement = document.createElement('h3');
-  titleElement.textContent = task.title;
-
-  const descriptionElement = document.createElement('p');
-  descriptionElement.textContent = task.description;
-
-  const deadlineElement = document.createElement('p');
-  deadlineElement.textContent = `Deadline: ${task.deadline}`;
-
-  taskCard.appendChild(titleElement);
-  taskCard.appendChild(descriptionElement);
-  taskCard.appendChild(deadlineElement);
-
-  const taskContainer = document.getElementById('task-container');
-  taskContainer.appendChild(taskCard);
+  const taskCard = $(`
+    <div class="card mb-2 task-card" data-id="${id}">
+         <div class="card-body">
+            <h5 class="card-title">${task.title}</h5>
+            <p class="card-text">${task.description}</p>
+            <p class="card-text"><small class="text-muted">Due: ${task.dueDate}</small></p>
+            <button type="button" class="btn btn-danger delete-task-btn">Delete</button>
+         </div>
+    </div>
+    `);
 }
 
 createTaskCard(task);
