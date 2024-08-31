@@ -19,6 +19,16 @@ function createTaskCard(task) {
          </div>
     </div>
     `);
+
+    const today = dayjs();
+    const dueDate = dayjs(task.dueDate);
+    if (dueDate.isBefore(today)) {
+      taskCard.addClass('bg-alert');
+    } else if (today.isAfter(dueDate)) {
+      taskCard.addClass('bg-warning');
+    }
+
+  return taskCard;
 }
 
 createTaskCard(task);
