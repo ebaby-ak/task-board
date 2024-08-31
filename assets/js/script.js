@@ -60,24 +60,29 @@ function handleAddTask(event) {
   if (title && dueDate && description) {
     const newTask = {
       id: generateTaskId(),
-      title: title,
-      dueDate: dueDate,
-      description: description,
+      title,
+      dueDate,
+      description,
       status: 'to-do'
     };
 
     taskList.push(newTask);
+    saveTasks();
     renderTaskList();
+
     $('#formModal').modal('show');
     $('#taskForm')[0].reset();
 
-    localStorage.setItem("task", JSON.stringify(taskList));
-    localStorage.setItem("nextId", JSON.stringify(nextId));
   }
 }
 
 // Todo: create a function to handle deleting a task
-function handleDeleteTask(event) {}
+function handleDeleteTask(event) {
+  const taskId = $(event.target).closest('task-catd').data('id');
+  taskList = taskList.filter(task => task.id !== taskId);
+  saveTasks();
+  renderTaskList();
+}
 
 // Todo: create a function to handle dropping a task into a new status lane
 function handleDrop(event, ui) {}
