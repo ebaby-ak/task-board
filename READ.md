@@ -33,8 +33,27 @@ THEN the saved tasks persist
 
 The user is provided with starter code to build out a task board that allows any user to organize multiple tasks. The first step is to create a modal in html using bootstrap so that when a user selects the "add task" button, a form is populated with fields for title, due date, and description of the task. Next the user will need to create functions in JavaScript to create task cards, make the task cards render and draggable, handle adding a new task, handle deleting a task, handle dropping a task into different status lanes, and rendering the task list.
 
-# Expectation
-A user can expect that the final deployment to allow them to create a task upon clicking the "add task" button. The task will be populated under the "To Do" lane and will be draggable to other lanes, upon status change, and can be deleted once completed.
+## Table of Contents
+- [Installation](#installation)
+- [Usage](#usage)
+- [License](#license)
+- [Questions](#questions)
+- [Sources](#sources)
+
+## Installation
+No Installation Required. A user can expect that the final deployment to allow them to create a task upon clicking the "add task" button. The task will be populated under the "To Do" lane and will be draggable to other lanes, upon status change, and can be deleted once completed.
+
+## Usage
+Follow these steps to run the application:
+1. Click the deployed application link to access the application
+
+## License
+None
+
+## Questions
+For any questions, please reach out at:
+- [ebaby-ak](https://github.com/ebaby-ak)
+
 
 # Sources
 Xpert Learning Assistant was used to create the JavaScript code for creating a fuction to create a task card and creating a function to render the task list and make cards draggable. Stack Overflow was used to create the JavaScript function to handle adding a new task.
